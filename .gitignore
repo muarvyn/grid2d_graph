@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+Qt Creator temporary files
+*.user
+*.autosave
+
+Build directories
+build
+Release
+Debug
