@@ -31,11 +31,11 @@
 *.out
 *.app
 
-Qt Creator temporary files
+# Qt Creator temporary files
 *.user
 *.autosave
 
-Build directories
+# Build directories
 build
 Release
 Debug
