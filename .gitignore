@@ -31,9 +31,15 @@
 *.out
 *.app
 
-# Qt Creator temporary files
+# Qt Creator files
 *.user
 *.autosave
+*.cflags
+*.config
+*.creator
+*.cxxflags
+*.files
+*.includes
 
 # Build directories
 build
