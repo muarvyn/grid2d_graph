@@ -1,0 +1,8 @@
+project(g2dg_test)
+cmake_minimum_required(VERSION 2.8)
+aux_source_directory(. SRC_LIST)
+include_directories(..)
+#add_executable(${PROJECT_NAME} ${SRC_LIST})
+#add_executable(g2dg_test g2dg_test.cpp)
+add_executable(dijkstra_test dijkstra_test.cpp)
+set(CMAKE_CXX_FLAGS "-g -std=gnu++11")
