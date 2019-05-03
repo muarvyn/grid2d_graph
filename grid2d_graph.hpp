@@ -35,6 +35,11 @@
 #include "g2dg_out_edge_iterator.hpp"
 
 #define NEED_PROPERTY_MAP
+#define GRID2D_GRAPH_PARAMS typename row_type, typename column_type, \
+                            row_type rows_num, column_type columns_num
+
+#define GRID2D_GRAPH_DECLARATION g2dg::grid2d_graph<row_type, column_type, \
+                                                    rows_num, columns_num>
 
 namespace g2dg {
 
@@ -182,7 +187,7 @@ namespace g2dg {
         typedef edge_weight_map<Graph> type;
         typedef double value_type;
         typedef value_type reference;
-        typedef typename Graph::edge_descriptor key_type;
+        typedef typename boost::graph_traits<Graph>::edge_descriptor key_type;
         typedef boost::readable_property_map_tag category;
 
         edge_weight_map() {}
@@ -316,20 +321,29 @@ namespace boost {
 namespace g2dg {
 
 // PropertyMap valid expressions
-template <typename Graph>
-typename edge_weight_map_traits<Graph>::value_type
-get(typename edge_weight_map_traits<Graph>::const_type pmap,
-    typename edge_weight_map_traits<Graph>::key_type e)
+template <GRID2D_GRAPH_PARAMS>
+typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::value_type
+get(typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::const_type pmap,
+    typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::key_type e)
 {
     return pmap[e];
 }
 
 // ReadablePropertyGraph valid expressions
-template <typename Graph>
-typename edge_weight_map_traits<Graph>::const_type
-get(boost::edge_weight_t, const Graph&)
+template <GRID2D_GRAPH_PARAMS>
+typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::const_type
+get(boost::edge_weight_t, const GRID2D_GRAPH_DECLARATION&)
 {
-    return typename edge_weight_map_traits<Graph>::const_type();
+    return typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::const_type();
+}
+
+template <GRID2D_GRAPH_PARAMS>
+typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::value_type
+get(boost::edge_weight_t tag,
+    const GRID2D_GRAPH_DECLARATION& g,
+    typename edge_weight_map_traits<GRID2D_GRAPH_DECLARATION>::key_type e)
+{
+    return get(tag, g)[e];
 }
 
 template <typename Graph>
@@ -373,4 +387,3 @@ out_degree(typename Graph::vertex_descriptor& u, const Graph&)
 
 } // namespace g2dg
 #endif // GRID2D_GRAPH_HPP
-

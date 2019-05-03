@@ -47,7 +47,8 @@ int main (int, char*[]) {
   //BOOST_CONCEPT_ASSERT((AdjacencyGraphConcept<Graph> )); // adjacency_iterator hasn't been implemented
   //BOOST_CONCEPT_ASSERT((AdjacencyMatrixConcept<Graph> )); // edge hasn't been implemented
   BOOST_CONCEPT_ASSERT((ReadablePropertyGraphConcept<Graph, Vertex, vertex_index_t> ));
-  //BOOST_CONCEPT_ASSERT((ReadablePropertyGraphConcept<Graph, Edge, edge_index_t> )); // Edge properties haven't been implemented
+  //BOOST_CONCEPT_ASSERT((ReadablePropertyGraphConcept<Graph, Edge, edge_index_t> ));
+  BOOST_CONCEPT_ASSERT((ReadablePropertyGraphConcept<Graph, Edge, edge_weight_t>));
 
   return (0);
 }
